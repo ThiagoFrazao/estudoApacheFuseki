@@ -23,6 +23,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Arquivos Java/JOINT_beta_0.1.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
