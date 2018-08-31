@@ -1,12 +1,17 @@
 package jena;
 
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
+=======
+import java.util.ArrayList;
+>>>>>>> dd79c0ea50918ff553d9bf4cbe4c6000e777e53e
 
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntProperty;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
+<<<<<<< HEAD
 
 public class Ontologia{
 	
@@ -73,5 +78,22 @@ public class Ontologia{
 	}
 	
 	
+=======
+import org.apache.jena.util.iterator.ExtendedIterator;
+
+public class Ontologia {
+	
+	public static void main(String[] args) {
+		OntModel ont = ModelFactory.createOntologyModel();
+		ont.read("C:/Users/thiag/Documents/Faculdade/TCC/Ontologias/ModeloRDF-XML.owl", "RDF/XML");
+		ExtendedIterator<OntProperty> ei = ont.listAllOntProperties();
+		ArrayList<Property> props = new ArrayList<Property>();
+		
+		while(ei.hasNext()){
+			Property prop = ont.getProperty(ei.next().toString());
+			System.out.println(prop.getURI());
+		}
+	}
+>>>>>>> dd79c0ea50918ff553d9bf4cbe4c6000e777e53e
 
 }

@@ -1,16 +1,13 @@
 package db;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import entidades.Pessoa;
-
 public class PessoaDB {
 	
+	
+	
+	
+	
+	
+/*	
 	public List<Pessoa> recuperarPessoas(){
 		Pessoa pessoa;
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
@@ -50,10 +47,6 @@ public class PessoaDB {
 		}		
 		return pessoas;
 	}
-	
-	public static void main(String[] args) {
-		PessoaDB db = new PessoaDB();
-		List<Pessoa> pessoas = db.recuperarPessoas();
-	}
+	*/
 
 }
