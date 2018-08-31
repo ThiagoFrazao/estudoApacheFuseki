@@ -43,14 +43,20 @@
     	<version>2.11.1</version>
 	</dependency>
 	
-	
+<!-- 	
 	<dependency>
-    	<groupId>org.postgresql</groupId>
-    	<artifactId>postgresql</artifactId>
-    	<version>42.2.4</version>
+	    	<groupId>org.postgresql</groupId>
+	    	<artifactId>postgresql</artifactId>
+	    	<version>42.2.4</version>
 	</dependency>
+-->
 
-	
+	<dependency>
+  	   	<groupId>org.hsqldb</groupId>
+  	   	<artifactId>hsqldb</artifactId>
+  	   	<version>1.8.0.10</version>
+  	</dependency>  
+
   </dependencies>
   <build>
     <finalName>apache-jena</finalName>
