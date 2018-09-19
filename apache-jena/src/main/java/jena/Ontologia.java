@@ -3,16 +3,17 @@ package jena;
 import java.util.HashMap;
 import java.util.List;
 
-import java.util.ArrayList;
-
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntProperty;
+import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
 
 public class Ontologia{
 	
-	private static final String PATH = "C:/Users/E514189/Documents/Anotações/TCC/modeloRDF-XML.owl";
+	private static final String PATH = "C:/Users/thiag/Documents/Faculdade/TCC/remember.owl";
+	
+	public static Model modelOnt;
 	
 	private static HashMap<String, Property> pessoaProp = new HashMap<String, Property>();	
 	private static HashMap<String, Property> localProp  = new HashMap<String, Property>();
@@ -24,11 +25,12 @@ public class Ontologia{
 	static{
 		OntModel ontologia = ModelFactory.createOntologyModel();
 		ontologia.read(PATH);		
-		
+		modelOnt = ontologia.getBaseModel();
 		List<OntProperty> propriedades = ontologia.listAllOntProperties().toList();
 		
 		for(OntProperty prop : propriedades){
 			if(prop.getDomain() != null && prop.getDomain().toString().contains("Pessoa")){
+				System.out.println(prop.getLocalName());
 				pessoaProp.put(prop.getLocalName(), prop);
 			}
 			else if(prop.getDomain() != null && prop.getDomain().toString().contains("Local")){
@@ -73,5 +75,4 @@ public class Ontologia{
 	public static Property getPropDesaparecimento(String propriedade){
 		return desaparecimentoProp.get(propriedade);
 	}
-	
 }

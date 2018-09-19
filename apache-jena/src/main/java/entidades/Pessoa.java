@@ -20,6 +20,30 @@ public class Pessoa {
 	private String pesoAproximado;
 	private String alturaAproximada;
 	
+	public Pessoa(){
+		
+	}
+	
+	public Pessoa(String nome, String imagem, String sexo, String olhos, String corPele,  
+			      String corCabelo,  String tipoFisico, String transtornoMental, String nascimento, 
+			      String status, String informacoes, String pesoAproximado, String alturaAproximada){
+		
+		this.nome = nome;
+		this.imagemBase64 = imagem;
+		this.sexo = sexo;
+		this.olhos = olhos;
+		this.corPele = corPele;
+		this.corCabelo = corCabelo;
+		this.tipoFisico = tipoFisico;
+		this.transtornoMental = transtornoMental;
+		this.nascimento = nascimento;
+		this.status = status;
+		this.informacoes = informacoes;
+		this.pesoAproximado = pesoAproximado;
+		this.alturaAproximada = alturaAproximada;
+		
+	}
+	
 	public String getId() {
 		return id;
 	}
