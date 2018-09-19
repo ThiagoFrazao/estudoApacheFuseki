@@ -1,4 +1,4 @@
-package postgre;
+package db;
 
 public class PessoaDB {
 	
