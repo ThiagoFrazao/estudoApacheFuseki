@@ -1,9 +1,22 @@
 package entidades;
 
-public class Estado {
+import jena.Ontologia;
+
+public class Estado extends EntidadeRDF {
 	
 	private int id;
 	private String sigla;
+	
+	@Override
+	public String rdfForm() {
+		StringBuilder str = new StringBuilder();
+		
+		String uri = Ontologia.uriBaseOnt + "Cidade-ID" + this.getId() + ">";		
+		
+		str.append(uri + " remember:sigla \""    + this.getSigla() + "\" . ");
+				
+		return str.toString();
+	}
 	
 	public int getId() {
 		return id;

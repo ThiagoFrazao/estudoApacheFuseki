@@ -1,6 +1,8 @@
 package entidades;
 
-public class Pessoa {
+import jena.Ontologia;
+
+public class Pessoa extends EntidadeRDF {
 	
 	private String id;
 	private String nome;
@@ -24,7 +26,7 @@ public class Pessoa {
 		
 	}
 	
-	public Pessoa(String nome, String imagem, String sexo, String olhos, String corPele,  
+	public Pessoa(int id, String nome, String imagem, String sexo, String olhos, String corPele,  
 			      String corCabelo,  String tipoFisico, String transtornoMental, String nascimento, 
 			      String status, String informacoes, String pesoAproximado, String alturaAproximada, 
 			      String marcaCaracteristica, String fonte, String boletimOcorrencia){
@@ -46,6 +48,30 @@ public class Pessoa {
 		this.fonte = fonte;
 		this.boletimOcorrencia = boletimOcorrencia;
 		
+	}
+	
+	@Override
+	public String rdfForm(){		
+		StringBuilder str = new StringBuilder();
+		
+		String uri = Ontologia.uriBaseOnt + "Pessoa-ID" + this.getId() + ">";
+		System.out.println(this.getNome());
+		str.append(uri + " remember:nome \""             	  + this.getNome() + "\" . ");
+		str.append(uri + " remember:imagem \""           	  + this.getImagemBase64() + "\" . ");
+		str.append(uri + " remember:alturaAproximada \"" 	  + this.getAlturaAproximada() + "\" . ");
+		str.append(uri + " remember:pesoAproximado \"" 	      + this.getPesoAproximado() + "\" . ");
+		str.append(uri + " remember:corPele \"" 			  + this.getCorPele() + "\" . ");
+		str.append(uri + " remember:corCabelo \""             + this.getCorCabelo() + "\" . ");
+		str.append(uri + " remember:corOlhos \""              + this.getOlhos() + "\" . ");
+		str.append(uri + " remember:sexo \""                  + this.getSexo() + "\" . ");
+		str.append(uri + " remember:tipoFisico \""            + this.getTipoFisico() + "\" . ");
+		str.append(uri + " remember:status \""                + this.getStatus() + "\" . ");
+		str.append(uri + " remember:transtornoMental \""      + this.getTranstornoMental() + "\" . ");
+		str.append(uri + " remember:informacoes \""           + this.getInformacoes() + "\" . ");
+		str.append(uri + " remember:marcaCaracteristica \""   + this.getMarcaCaracteristica() + "\" . ");
+		str.append(uri + " remember:dataNascimento \"" 	      + this.getNascimento() + "\" . ");	
+				
+		return str.toString();
 	}
 	
 	public String getId() {
@@ -150,85 +176,6 @@ public class Pessoa {
 	public void setAlturaAproximada(String alturaAproximada) {
 		this.alturaAproximada = alturaAproximada;
 	}
-
-/*	public static void main(String[] args) throws FileNotFoundException, SQLException 
-	{
-
-	    String nomeArquivo = "D.owl";
-		File file = new File(nomeArquivo);
-		FileReader reader = new FileReader(file);
-		OntModel model = ModelFactory.createOntologyModel();
-		model.read(reader,null);
-		model.write(System.out, "RDF/XML-ABBREV");
-		
-		
-		//Fazendo conexao com o postgre e pegando todos os atributos de pessoa do banco
-		Connection con = null;
-	      try {
-	         Class.forName("org.postgresql.Driver");
-	         con = DriverManager
-	            .getConnection("jdbc:postgresql://localhost:5432/postgres",
-	            "postgres", "20071992");
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	         System.err.println(e.getClass().getName()+": "+e.getMessage());
-	         System.exit(0);
-	      }
-	      
-	      System.out.println("Abri o banco");
-	      
-	      String query = "select * from myosotis";
-	      ResultSet set = con.createStatement().executeQuery(query);
-	      Pessoa p = new Pessoa();
-	      
-	      while(set.next())
-	      {
-	       
-	    	p.id = set.getString("identificador");
-	        p.nome = set.getString("nome");
-	        p.imagemBase64 = set.getString("imagem");
-	        p.sexo = set.getString("sexo");
-	        p.olhos = set.getString("olhos");
-	        p.corPele = set.getString("cor_da_pele");
-	        p.corCabelo = set.getString("cabelo");	
-	        p.tipoFisico = set.getString("peso_aproximado");
-	        p.transtornoMental = set.getString("altura_aproximada");
-	        p.nascimento = set.getString("tipo_fisico");
-	        p.marcaCaracteristica = set.getString("transtorno_mental");
-	        p.status = set.getString("status");
-	        p.informacoes = set.getString("informacoes");
-	        p.fonte = set.getString("fonte");
-	        p.boletimOcorrencia = set.getString("boletim_ocorrencia");	
-	        p.pesoAproximado = set.getString("peso_aproximado");
-	        p.alturaAproximada = set.getString("altura_aproximada");
-	        
-	        
-			// Pegando URI da classe pessoa
-			String uriPessoa = "http://www.projeto-myosotis.com.br/pessoasdesaparecidas/ontologiaremember#Pessoa";
-			
-			Iterator iter = model.getProperty(uriPessoa).listProperties();
-			
-			
-			Resource r = model.createResource(uriPessoa).addProperty(,p.nome).
-					addProperty("", p.imagemBase64).
-					addProperty("", p.sexo).
-					addProperty("", p.olhos).
-					addProperty("", p.corPele).
-					addProperty("", p.corCabelo).
-					addProperty("", p.tipoFisico).
-					addProperty("", p.transtornoMental).
-					addProperty("", p.nascimento).
-					addProperty("", p.marcaCaracteristica).
-					addProperty("", p.status).
-					addProperty("", p.informacoes).
-					addProperty("", p.fonte).
-					addProperty("", p.boletimOcorrencia).
-					addProperty("", p.pesoAproximado).
-					addProperty("", p.alturaAproximada);		
-			
-	      }
-	      
-	      //model.write(System.out);
-		
-	}*/
+	
+	
 }

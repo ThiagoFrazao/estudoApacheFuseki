@@ -11,9 +11,15 @@ import org.apache.jena.rdf.model.Property;
 
 public class Ontologia{
 	
-	private static final String PATH = "/home/mmrosa/MEGA/MEGAsync/Faculdade/TCC/OntologiaMyosotis/modelos/remember.owl";
-	//private static final String PATH = "C:/Users/thiag/Documents/Faculdade/TCC/remember.owl";
-	public static Model modelOnt;
+	//Path Mayara 
+	//private static final String PATH = "/home/mmrosa/MEGA/MEGAsync/Faculdade/TCC/OntologiaMyosotis/modelos/remember.owl";	
+	//Path Thiago Casa
+	//private static final String PATH = "C:/Users/thiag/Documents/Faculdade/TCC/remember.owl";	
+	//Path Thiago Estagio
+	private static final String PATH   = "C:/Users/E514189/Documents/Anotações/TCC/remember.owl";
+	
+	public static Model modelOnt;	
+	public static final String uriBaseOnt = "<http://www.projeto-myosotis.com.br/pessoasdesaparecidas/ontologiaremember#";	
 	
 	private static HashMap<String, Property> pessoaProp = new HashMap<String, Property>();	
 	private static HashMap<String, Property> localProp  = new HashMap<String, Property>();
@@ -29,8 +35,8 @@ public class Ontologia{
 		List<OntProperty> propriedades = ontologia.listAllOntProperties().toList();
 		
 		for(OntProperty prop : propriedades){
-			if(prop.getDomain() != null && prop.getDomain().toString().contains("Pessoa")){
-				System.out.println(prop.getLocalName());
+			
+			if(prop.getDomain() != null && prop.getDomain().toString().contains("Pessoa")){		
 				pessoaProp.put(prop.getLocalName(), prop);
 			}
 			else if(prop.getDomain() != null && prop.getDomain().toString().contains("Local")){
@@ -43,13 +49,15 @@ public class Ontologia{
 				cidadeProp.put(prop.getLocalName(), prop);
 			}
 			else if(prop.getDomain() != null && prop.getDomain().toString().contains("UF")){
+				System.out.println(prop.getLocalName());
+				System.out.println(prop.getURI() + "\n");
 				ufProp.put(prop.getLocalName(), prop);
 			}
 			else if(prop.getDomain() != null && prop.getDomain().toString().contains("Desaparecimento")){
+				
 				desaparecimentoProp.put(prop.getLocalName(), prop);
 			}			
 		}
-		
 	}	
 	
 	public static Property getPropPessoa(String propriedade){
@@ -74,5 +82,9 @@ public class Ontologia{
 	
 	public static Property getPropDesaparecimento(String propriedade){
 		return desaparecimentoProp.get(propriedade);
+	}
+	
+	public static void main(String[] args) {
+		Ontologia ont = new Ontologia();
 	}
 }
