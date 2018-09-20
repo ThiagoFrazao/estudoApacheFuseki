@@ -6,10 +6,11 @@ import entidades.Pessoa;
 
 public class PessoaRDF {
 	
+	private final String domainPessoa = "http://www.projeto-myosotis.com.br/pessoasdesaparecidas/ontologiaremember#Pessoa";
 	
 	public void adicionarPessoa(Pessoa pessoa){
 		
-		Resource novaPessoa = Ontologia.modelOnt.createResource()
+		Resource novaPessoa = Ontologia.modelOnt.createResource(domainPessoa+pessoa.getNome())
 							  .addProperty(Ontologia.getPropPessoa("nome"), pessoa.getNome())
 							  .addProperty(Ontologia.getPropPessoa("imagem"), pessoa.getImagemBase64())
 							  .addProperty(Ontologia.getPropPessoa("sexo"), pessoa.getSexo())
@@ -23,6 +24,9 @@ public class PessoaRDF {
 							  .addProperty(Ontologia.getPropPessoa("transtornoMental"), pessoa.getTranstornoMental())
 							  .addProperty(Ontologia.getPropPessoa("dataNascimento"), pessoa.getNascimento())
 							  .addProperty(Ontologia.getPropPessoa("informacoes"), pessoa.getInformacoes())
+							  .addProperty(Ontologia.getPropPessoa("marcaCaracteristica"), pessoa.getMarcaCaracteristica())
+							  .addProperty(Ontologia.getPropPessoa("fonte"), pessoa.getFonte())
+							  .addProperty(Ontologia.getPropPessoa("boletimOcorrencia"), pessoa.getBoletimOcorrencia())
 							  ;
 		
 		Ontologia.modelOnt.write(System.out);
@@ -30,7 +34,7 @@ public class PessoaRDF {
 	}
 	
 	public static void main(String[] args) {
-		Pessoa pessoa = new Pessoa("Jose","batata","batata","batata","batata","batata","batata","batata","batata","batata","batata","batata","batata");
+		Pessoa pessoa = new Pessoa("Jose","batata","batata","batata","batata","batata","batata","batata","batata","batata","batata","batata","batata","batata","batata","batata");
 		PessoaRDF teste = new PessoaRDF();
 		
 		teste.adicionarPessoa(pessoa);

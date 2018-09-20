@@ -9,7 +9,7 @@ public class ConnectionFactory {
 	private static final String POSTGRE = "jdbc:postgresql://localhost:5432/postgres";
 	private static final String HSQLDB = "jdbc:hsqldb:file:C:/hsqldb/demo/estudo";
 	private static final String usuario = "postgres";
-	private static final String senha = "user";
+	private static final String senha = "20071992";
 	
 	public static Connection gerarConexao(){
 		Connection con = null;

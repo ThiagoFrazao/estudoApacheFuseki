@@ -11,8 +11,8 @@ import org.apache.jena.rdf.model.Property;
 
 public class Ontologia{
 	
-	private static final String PATH = "C:/Users/thiag/Documents/Faculdade/TCC/remember.owl";
-	
+	private static final String PATH = "/home/mmrosa/MEGA/MEGAsync/Faculdade/TCC/OntologiaMyosotis/modelos/remember.owl";
+	//private static final String PATH = "C:/Users/thiag/Documents/Faculdade/TCC/remember.owl";
 	public static Model modelOnt;
 	
 	private static HashMap<String, Property> pessoaProp = new HashMap<String, Property>();	

@@ -26,7 +26,8 @@ public class Pessoa {
 	
 	public Pessoa(String nome, String imagem, String sexo, String olhos, String corPele,  
 			      String corCabelo,  String tipoFisico, String transtornoMental, String nascimento, 
-			      String status, String informacoes, String pesoAproximado, String alturaAproximada){
+			      String status, String informacoes, String pesoAproximado, String alturaAproximada, 
+			      String marcaCaracteristica, String fonte, String boletimOcorrencia){
 		
 		this.nome = nome;
 		this.imagemBase64 = imagem;
@@ -41,6 +42,9 @@ public class Pessoa {
 		this.informacoes = informacoes;
 		this.pesoAproximado = pesoAproximado;
 		this.alturaAproximada = alturaAproximada;
+		this.marcaCaracteristica = marcaCaracteristica;
+		this.fonte = fonte;
+		this.boletimOcorrencia = boletimOcorrencia;
 		
 	}
 	
