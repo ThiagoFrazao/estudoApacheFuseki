@@ -29,8 +29,7 @@ public class Pessoa extends EntidadeRDF {
 	public Pessoa(int id, String nome, String imagem, String sexo, String olhos, String corPele,  
 			      String corCabelo,  String tipoFisico, String transtornoMental, String nascimento, 
 			      String status, String informacoes, String pesoAproximado, String alturaAproximada, 
-			      String marcaCaracteristica, String fonte, String boletimOcorrencia){
-		
+			      String marcaCaracteristica, String fonte, String boletimOcorrencia){		
 		this.nome = nome;
 		this.imagemBase64 = imagem;
 		this.sexo = sexo;
@@ -46,8 +45,7 @@ public class Pessoa extends EntidadeRDF {
 		this.alturaAproximada = alturaAproximada;
 		this.marcaCaracteristica = marcaCaracteristica;
 		this.fonte = fonte;
-		this.boletimOcorrencia = boletimOcorrencia;
-		
+		this.boletimOcorrencia = boletimOcorrencia;		
 	}
 	
 	@Override
@@ -55,7 +53,6 @@ public class Pessoa extends EntidadeRDF {
 		StringBuilder str = new StringBuilder();
 		
 		String uri = Ontologia.uriBaseOnt + "Pessoa-ID" + this.getId() + ">";
-		System.out.println(this.getNome());
 		str.append(uri + " remember:nome \""             	  + this.getNome() + "\" . ");
 		str.append(uri + " remember:imagem \""           	  + this.getImagemBase64() + "\" . ");
 		str.append(uri + " remember:alturaAproximada \"" 	  + this.getAlturaAproximada() + "\" . ");
@@ -175,6 +172,30 @@ public class Pessoa extends EntidadeRDF {
 	}
 	public void setAlturaAproximada(String alturaAproximada) {
 		this.alturaAproximada = alturaAproximada;
+	}
+	
+	@Override
+	public String toString(){
+		
+		StringBuilder str = new StringBuilder();
+		
+		str.append("Nome: "                  + this.getNome() + " \n");
+		str.append("Imagem: "                + this.getImagemBase64() + " \n");
+		str.append("Altura Aproximada: "      + this.getAlturaAproximada() + " \n");
+		str.append("Peso Aproximado: "        + this.getPesoAproximado() + " \n");
+		str.append("Cor Pele: "              + this.getCorPele() + " \n");
+		str.append("Cor Cabelo: "            + this.getCorCabelo() + " \n");
+		str.append("Cor Olhos: "             + this.getOlhos() + " \n");
+		str.append("Sexo: "                  + this.getSexo() + " \n");
+		str.append("Tipo Fisico: "           + this.getTipoFisico() + " \n");
+		str.append("Status: "                + this.getStatus() + " \n");
+		str.append("Transtorno Mental: "     + this.getTranstornoMental() + " \n");
+		str.append("Informacoes: "           + this.getInformacoes() + " \n");
+		str.append("Marca Caracteristicas: " + this.getMarcaCaracteristica() + " \n");
+		str.append("Data de Nascimento: "    + this.getNascimento() + " \n");
+		
+		return str.toString();
+		
 	}
 	
 	
