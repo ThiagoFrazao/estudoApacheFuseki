@@ -1,11 +1,9 @@
 package jena;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntProperty;
-import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
 
@@ -16,25 +14,22 @@ public class Ontologia{
 	//Path Thiago Casa
 	//private static final String PATH = "C:/Users/thiag/Documents/Faculdade/TCC/remember.owl";	
 	//Path Thiago Estagio
-	private static final String PATH   = "C:/Users/E514189/Documents/Anotações/TCC/remember.owl";
+	public static final String PATH   = "C:/Users/E514189/Documents/Anotacoes/Faculdade/ontologiarelembrar.owl";
 	
-	public static Model modelOnt;	
-	public static final String uriBaseOnt = "<http://www.projeto-myosotis.com.br/pessoasdesaparecidas/ontologiaremember#";	
+	public static OntModel ontModel;	
+	public static final String uriBaseOnt = "<http://ontologiarelembrar.github.io/ontologiarelembrar#";	
 	
-	private static HashMap<String, Property> pessoaProp = new HashMap<String, Property>();	
-	private static HashMap<String, Property> localProp  = new HashMap<String, Property>();
+	private static HashMap<String, Property> pessoaProp  = new HashMap<String, Property>();	
+	private static HashMap<String, Property> localProp   = new HashMap<String, Property>();
 	private static HashMap<String, Property> bairroProp  = new HashMap<String, Property>();
-	private static HashMap<String, Property> cidadeProp = new HashMap<String, Property>();
-	private static HashMap<String, Property> ufProp  = new HashMap<String, Property>();
+	private static HashMap<String, Property> cidadeProp  = new HashMap<String, Property>();
+	private static HashMap<String, Property> ufProp      = new HashMap<String, Property>();
 	private static HashMap<String, Property> desaparecimentoProp  = new HashMap<String, Property>();
 	
 	static{
-		OntModel ontologia = ModelFactory.createOntologyModel();
-		ontologia.read(PATH);		
-		modelOnt = ontologia.getBaseModel();
-		List<OntProperty> propriedades = ontologia.listAllOntProperties().toList();
-		
-		for(OntProperty prop : propriedades){
+		ontModel = ModelFactory.createOntologyModel();
+		ontModel.read(PATH);		
+		for(OntProperty prop : ontModel.listAllOntProperties().toList()){
 			
 			if(prop.getDomain() != null && prop.getDomain().toString().contains("Pessoa")){		
 				pessoaProp.put(prop.getLocalName(), prop);
@@ -49,12 +44,9 @@ public class Ontologia{
 				cidadeProp.put(prop.getLocalName(), prop);
 			}
 			else if(prop.getDomain() != null && prop.getDomain().toString().contains("UF")){
-				System.out.println(prop.getLocalName());
-				System.out.println(prop.getURI() + "\n");
 				ufProp.put(prop.getLocalName(), prop);
 			}
 			else if(prop.getDomain() != null && prop.getDomain().toString().contains("Desaparecimento")){
-				
 				desaparecimentoProp.put(prop.getLocalName(), prop);
 			}			
 		}
@@ -84,7 +76,7 @@ public class Ontologia{
 		return desaparecimentoProp.get(propriedade);
 	}
 	
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		Ontologia ont = new Ontologia();
-	}
+	}*/
 }

@@ -1,5 +1,12 @@
 package entidades;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.jena.query.QuerySolution;
+
 import jena.Ontologia;
 
 public class Pessoa extends EntidadeRDF {
@@ -26,10 +33,11 @@ public class Pessoa extends EntidadeRDF {
 		
 	}
 	
-	public Pessoa(int id, String nome, String imagem, String sexo, String olhos, String corPele,  
+	public Pessoa(String id, String nome, String imagem, String sexo, String olhos, String corPele,  
 			      String corCabelo,  String tipoFisico, String transtornoMental, String nascimento, 
 			      String status, String informacoes, String pesoAproximado, String alturaAproximada, 
-			      String marcaCaracteristica, String fonte, String boletimOcorrencia){		
+			      String marcaCaracteristica, String fonte, String boletimOcorrencia){	
+		this.id = id;
 		this.nome = nome;
 		this.imagemBase64 = imagem;
 		this.sexo = sexo;
@@ -48,27 +56,56 @@ public class Pessoa extends EntidadeRDF {
 		this.boletimOcorrencia = boletimOcorrencia;		
 	}
 	
-	@Override
-	public String rdfForm(){		
+	public String namedIndividualForm(String nomeIndividuo) throws IllegalArgumentException, IllegalAccessException{		
 		StringBuilder str = new StringBuilder();
 		
-		String uri = Ontologia.uriBaseOnt + "Pessoa-ID" + this.getId() + ">";
-		str.append(uri + " remember:nome \""             	  + this.getNome() + "\" . ");
-		str.append(uri + " remember:imagem \""           	  + this.getImagemBase64() + "\" . ");
-		str.append(uri + " remember:alturaAproximada \"" 	  + this.getAlturaAproximada() + "\" . ");
-		str.append(uri + " remember:pesoAproximado \"" 	      + this.getPesoAproximado() + "\" . ");
-		str.append(uri + " remember:corPele \"" 			  + this.getCorPele() + "\" . ");
-		str.append(uri + " remember:corCabelo \""             + this.getCorCabelo() + "\" . ");
-		str.append(uri + " remember:corOlhos \""              + this.getOlhos() + "\" . ");
-		str.append(uri + " remember:sexo \""                  + this.getSexo() + "\" . ");
-		str.append(uri + " remember:tipoFisico \""            + this.getTipoFisico() + "\" . ");
-		str.append(uri + " remember:status \""                + this.getStatus() + "\" . ");
-		str.append(uri + " remember:transtornoMental \""      + this.getTranstornoMental() + "\" . ");
-		str.append(uri + " remember:informacoes \""           + this.getInformacoes() + "\" . ");
-		str.append(uri + " remember:marcaCaracteristica \""   + this.getMarcaCaracteristica() + "\" . ");
-		str.append(uri + " remember:dataNascimento \"" 	      + this.getNascimento() + "\" . ");	
-				
+		str.append("<owl:NamedIndividual rdf:about=\"http://ontologiarelembrar.github.io/ontologiarelembrar#"
+		                   + nomeIndividuo  +"\">\n");
+		str.append("<rdf:type rdf:resource=\"http://ontologiarelembrar.github.io/ontologiarelembrar#"
+		                   + this.getClass().getSimpleName() +"\"/>\n");		
+		
+		for(Field field : this.getClass().getDeclaredFields()){			
+			str.append("<"+field.getName()+">" + field.get(this) + "</"+field.getName()+">\n");			
+		}		
+		str.append("</owl:NamedIndividual>\n");	
+		
 		return str.toString();
+	}
+	
+	@Override
+	public String rdfForm(String rdfName) throws IllegalArgumentException, IllegalAccessException {
+		StringBuilder str = new StringBuilder();
+		
+		//str.append("<"+ Ontologia.uriBaseOnt +":Pessoa rdf:about=\"http://ontologiarelembrar.github.io/ontologiarelembrar#"+ rdfName + "\">");
+		str.append("<ontologiarelembrar:Pessoa rdf:about=\"http://ontologiarelembrar.github.io/ontologiarelembrar#"+ rdfName + "\">");
+		for(Field field : this.getClass().getDeclaredFields()){
+			str.append(" <ontologiarelembrar:"+field.getName()+">"+field.get(this)+"</ontologiarelembrar:"+field.getName()+">");
+		}		
+		str.append("<rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#NamedIndividual\"/>");
+		str.append("</ontologiarelembrar:Pessoa>");
+		return str.toString();
+	}		
+	
+	@Override
+	public Pessoa fromQueryList(List<QuerySolution> qsList){		
+		Pessoa retorno = new Pessoa();
+		
+		retorno.setNome(qsList.get(0).getLiteral("objeto").toString());		
+		retorno.setImagemBase64(qsList.get(1).getLiteral("objeto").toString());
+		retorno.setAlturaAproximada(qsList.get(2).getLiteral("objeto").toString());
+		retorno.setPesoAproximado(qsList.get(3).getLiteral("objeto").toString());
+		retorno.setCorPele(qsList.get(4).getLiteral("objeto").toString());
+		retorno.setCorCabelo(qsList.get(5).getLiteral("objeto").toString());
+		retorno.setOlhos(qsList.get(6).getLiteral("objeto").toString());
+		retorno.setSexo(qsList.get(7).getLiteral("objeto").toString());
+		retorno.setTipoFisico(qsList.get(8).getLiteral("objeto").toString());
+		retorno.setStatus(qsList.get(9).getLiteral("objeto").toString());
+		retorno.setTranstornoMental(qsList.get(10).getLiteral("objeto").toString());
+		retorno.setInformacoes(qsList.get(11).getLiteral("objeto").toString());
+		retorno.setMarcaCaracteristica(qsList.get(12).getLiteral("objeto").toString());
+		retorno.setNascimento(qsList.get(13).getLiteral("objeto").toString());			
+		
+		return retorno;
 	}
 	
 	public String getId() {
@@ -175,8 +212,7 @@ public class Pessoa extends EntidadeRDF {
 	}
 	
 	@Override
-	public String toString(){
-		
+	public String toString(){		
 		StringBuilder str = new StringBuilder();
 		
 		str.append("Nome: "                  + this.getNome() + " \n");
@@ -194,9 +230,8 @@ public class Pessoa extends EntidadeRDF {
 		str.append("Marca Caracteristicas: " + this.getMarcaCaracteristica() + " \n");
 		str.append("Data de Nascimento: "    + this.getNascimento() + " \n");
 		
-		return str.toString();
-		
+		return str.toString();		
 	}
-	
+
 	
 }

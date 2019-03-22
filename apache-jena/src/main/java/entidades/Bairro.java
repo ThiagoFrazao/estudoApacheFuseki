@@ -1,5 +1,9 @@
 package entidades;
 
+import java.util.List;
+
+import org.apache.jena.query.QuerySolution;
+
 import jena.Ontologia;
 
 public class Bairro extends EntidadeRDF{
@@ -8,7 +12,7 @@ public class Bairro extends EntidadeRDF{
 	private String nome;
 	
 	@Override
-	public String rdfForm() {
+	public String namedIndividualForm(String nomeIndividuo) {
 		StringBuilder str = new StringBuilder();
 		
 		String uri = Ontologia.uriBaseOnt + "Bairro-ID" + this.getId() + ">";		
@@ -19,6 +23,16 @@ public class Bairro extends EntidadeRDF{
 				
 		return str.toString();
 	}
+	
+
+	@Override
+	public EntidadeRDF fromQueryList(List<QuerySolution> qsList) {
+		
+		Bairro retorno = new Bairro();		
+		
+		return retorno;
+	}
+	
 	
 	public int getId() {
 		return id;
@@ -38,5 +52,9 @@ public class Bairro extends EntidadeRDF{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+
+
+
 	
 }

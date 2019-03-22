@@ -1,5 +1,9 @@
 package entidades;
 
+import java.util.List;
+
+import org.apache.jena.query.QuerySolution;
+
 import jena.Ontologia;
 
 public class Desaparecimento extends EntidadeRDF {
@@ -25,6 +29,12 @@ public class Desaparecimento extends EntidadeRDF {
 		str.append(uri + " remember:estaAssociado \""       + uriLocal + "\" . ");
 				
 		return str.toString();
+	}
+	
+	@Override
+	public EntidadeRDF fromQueryList(List<QuerySolution> qsList) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	public int getId() {
@@ -57,10 +67,4 @@ public class Desaparecimento extends EntidadeRDF {
 	public void setLocalDesaparecimento(Local localDesaparecimento) {
 		this.localDesaparecimento = localDesaparecimento;
 	}
-
-
-
-	
-	
-
 }

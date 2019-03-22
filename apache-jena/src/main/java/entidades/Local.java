@@ -1,5 +1,9 @@
 package entidades;
 
+import java.util.List;
+
+import org.apache.jena.query.QuerySolution;
+
 import jena.Ontologia;
 
 public class Local extends EntidadeRDF {
@@ -29,6 +33,12 @@ public class Local extends EntidadeRDF {
 		str.append(uri + " remember:estaAssociado \"" + uriEstado + "\" . ");
 				
 		return str.toString();
+	}
+	
+	@Override
+	public EntidadeRDF fromQueryList(List<QuerySolution> qsList) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
@@ -73,7 +83,4 @@ public class Local extends EntidadeRDF {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-
-
-
 }

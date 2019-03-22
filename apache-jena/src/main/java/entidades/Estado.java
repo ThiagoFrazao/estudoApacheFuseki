@@ -1,5 +1,9 @@
 package entidades;
 
+import java.util.List;
+
+import org.apache.jena.query.QuerySolution;
+
 import jena.Ontologia;
 
 public class Estado extends EntidadeRDF {
@@ -16,6 +20,12 @@ public class Estado extends EntidadeRDF {
 		str.append(uri + " remember:sigla \""    + this.getSigla() + "\" . ");
 				
 		return str.toString();
+	}	
+
+	@Override
+	public EntidadeRDF fromQueryList(List<QuerySolution> qsList) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	public int getId() {
@@ -30,5 +40,4 @@ public class Estado extends EntidadeRDF {
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
-
 }
