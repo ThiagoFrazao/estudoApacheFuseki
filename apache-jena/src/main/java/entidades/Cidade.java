@@ -26,6 +26,12 @@ public class Cidade extends EntidadeRDF {
 	}
 	
 	@Override
+	public String rdfForm(String rdfName) throws IllegalArgumentException, IllegalAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public EntidadeRDF fromQueryList(List<QuerySolution> qsList) {
 		// TODO Auto-generated method stub
 		return null;
@@ -49,4 +55,5 @@ public class Cidade extends EntidadeRDF {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 }

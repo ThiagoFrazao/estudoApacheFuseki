@@ -12,7 +12,7 @@ public class Estado extends EntidadeRDF {
 	private String sigla;
 	
 	@Override
-	public String rdfForm() {
+	public String rdfForm(String name) throws IllegalArgumentException, IllegalAccessException {
 		StringBuilder str = new StringBuilder();
 		
 		String uri = Ontologia.uriBaseOnt + "Cidade-ID" + this.getId() + ">";		
@@ -24,6 +24,12 @@ public class Estado extends EntidadeRDF {
 
 	@Override
 	public EntidadeRDF fromQueryList(List<QuerySolution> qsList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public String namedIndividualForm(String nomeIndividuo) throws IllegalArgumentException, IllegalAccessException {
 		// TODO Auto-generated method stub
 		return null;
 	}

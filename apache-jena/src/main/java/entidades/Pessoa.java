@@ -1,28 +1,23 @@
 package entidades;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.jena.query.QuerySolution;
-
-import jena.Ontologia;
 
 public class Pessoa extends EntidadeRDF {
 	
 	private String id;
 	private String nome;
-	private String imagemBase64;
+	private String imagem;
 	private String sexo;
-	private String olhos;
+	private String corOlhos;
 	private String corPele;
 	private String corCabelo;	
 	private String tipoFisico;
 	private String transtornoMental;
-	private String nascimento;
+	private String dataNascimento;
 	private String marcaCaracteristica;
-	private String status;
 	private String informacoes;
 	private String fonte;
 	private String boletimOcorrencia;	
@@ -35,19 +30,18 @@ public class Pessoa extends EntidadeRDF {
 	
 	public Pessoa(String id, String nome, String imagem, String sexo, String olhos, String corPele,  
 			      String corCabelo,  String tipoFisico, String transtornoMental, String nascimento, 
-			      String status, String informacoes, String pesoAproximado, String alturaAproximada, 
+			      String informacoes, String pesoAproximado, String alturaAproximada, 
 			      String marcaCaracteristica, String fonte, String boletimOcorrencia){	
 		this.id = id;
 		this.nome = nome;
-		this.imagemBase64 = imagem;
+		this.imagem = imagem;
 		this.sexo = sexo;
-		this.olhos = olhos;
+		this.corOlhos = olhos;
 		this.corPele = corPele;
 		this.corCabelo = corCabelo;
 		this.tipoFisico = tipoFisico;
 		this.transtornoMental = transtornoMental;
-		this.nascimento = nascimento;
-		this.status = status;
+		this.dataNascimento = nascimento;
 		this.informacoes = informacoes;
 		this.pesoAproximado = pesoAproximado;
 		this.alturaAproximada = alturaAproximada;
@@ -99,7 +93,6 @@ public class Pessoa extends EntidadeRDF {
 		retorno.setOlhos(qsList.get(6).getLiteral("objeto").toString());
 		retorno.setSexo(qsList.get(7).getLiteral("objeto").toString());
 		retorno.setTipoFisico(qsList.get(8).getLiteral("objeto").toString());
-		retorno.setStatus(qsList.get(9).getLiteral("objeto").toString());
 		retorno.setTranstornoMental(qsList.get(10).getLiteral("objeto").toString());
 		retorno.setInformacoes(qsList.get(11).getLiteral("objeto").toString());
 		retorno.setMarcaCaracteristica(qsList.get(12).getLiteral("objeto").toString());
@@ -121,10 +114,10 @@ public class Pessoa extends EntidadeRDF {
 		this.nome = nome;
 	}
 	public String getImagemBase64() {
-		return imagemBase64;
+		return imagem;
 	}
 	public void setImagemBase64(String imagemBase64) {
-		this.imagemBase64 = imagemBase64;
+		this.imagem = imagemBase64;
 	}
 	public String getSexo() {
 		return sexo;
@@ -133,10 +126,10 @@ public class Pessoa extends EntidadeRDF {
 		this.sexo = sexo;
 	}
 	public String getOlhos() {
-		return olhos;
+		return corOlhos;
 	}
 	public void setOlhos(String olhos) {
-		this.olhos = olhos;
+		this.corOlhos = olhos;
 	}
 	public String getCorPele() {
 		return corPele;
@@ -163,22 +156,16 @@ public class Pessoa extends EntidadeRDF {
 		this.transtornoMental = transtornoMental;
 	}
 	public String getNascimento() {
-		return nascimento;
+		return dataNascimento;
 	}
 	public void setNascimento(String nascimento) {
-		this.nascimento = nascimento;
+		this.dataNascimento = nascimento;
 	}
 	public String getMarcaCaracteristica() {
 		return marcaCaracteristica;
 	}
 	public void setMarcaCaracteristica(String marcaCaracteristica) {
 		this.marcaCaracteristica = marcaCaracteristica;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	public String getInformacoes() {
 		return informacoes;
@@ -224,7 +211,6 @@ public class Pessoa extends EntidadeRDF {
 		str.append("Cor Olhos: "             + this.getOlhos() + " \n");
 		str.append("Sexo: "                  + this.getSexo() + " \n");
 		str.append("Tipo Fisico: "           + this.getTipoFisico() + " \n");
-		str.append("Status: "                + this.getStatus() + " \n");
 		str.append("Transtorno Mental: "     + this.getTranstornoMental() + " \n");
 		str.append("Informacoes: "           + this.getInformacoes() + " \n");
 		str.append("Marca Caracteristicas: " + this.getMarcaCaracteristica() + " \n");

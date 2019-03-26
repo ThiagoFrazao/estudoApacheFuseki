@@ -10,14 +10,15 @@ import org.apache.jena.rdf.model.Property;
 public class Ontologia{
 	
 	//Path Mayara 
-	//private static final String PATH = "/home/mmrosa/MEGA/MEGAsync/Faculdade/TCC/OntologiaMyosotis/modelos/remember.owl";	
+	//private static final String ONTOLOGIE_PATH = "/home/mmrosa/MEGA/MEGAsync/Faculdade/TCC/OntologiaMyosotis/modelos/remember.owl";	
 	//Path Thiago Casa
-	//private static final String PATH = "C:/Users/thiag/Documents/Faculdade/TCC/remember.owl";	
+	public static final String ONTOLOGIE_PATH = "C:/Users/thiag/Documents/Faculdade/TCC/Ontologias/ontologiarelembrar.owl";	
 	//Path Thiago Estagio
-	public static final String PATH   = "C:/Users/E514189/Documents/Anotacoes/Faculdade/ontologiarelembrar.owl";
+	//public static final String ONTOLOGIE_PATH   = "C:/Users/E514189/Documents/Anotacoes/Faculdade/ontologiarelembrar.owl";
 	
-	public static OntModel ontModel;	
-	public static final String uriBaseOnt = "<http://ontologiarelembrar.github.io/ontologiarelembrar#";	
+	public static final String uriBaseOnt = "<http://ontologiarelembrar.github.io/ontologiarelembrar#";		
+	private static OntModel ontModel;	
+	
 	
 	private static HashMap<String, Property> pessoaProp  = new HashMap<String, Property>();	
 	private static HashMap<String, Property> localProp   = new HashMap<String, Property>();
@@ -28,8 +29,8 @@ public class Ontologia{
 	
 	static{
 		ontModel = ModelFactory.createOntologyModel();
-		ontModel.read(PATH);		
-		for(OntProperty prop : ontModel.listAllOntProperties().toList()){
+		ontModel.read(ONTOLOGIE_PATH);		
+		for(OntProperty prop : getOntModel().listAllOntProperties().toList()){
 			
 			if(prop.getDomain() != null && prop.getDomain().toString().contains("Pessoa")){		
 				pessoaProp.put(prop.getLocalName(), prop);
@@ -51,6 +52,10 @@ public class Ontologia{
 			}			
 		}
 	}	
+	
+	public static OntModel getOntModel() {
+		return ontModel;
+	}
 	
 	public static Property getPropPessoa(String propriedade){
 		return pessoaProp.get(propriedade);

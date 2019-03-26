@@ -33,6 +33,12 @@ public class Bairro extends EntidadeRDF{
 		return retorno;
 	}
 	
+	@Override
+	public String rdfForm(String rdfName) throws IllegalArgumentException, IllegalAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 	public int getId() {
 		return id;
@@ -52,6 +58,9 @@ public class Bairro extends EntidadeRDF{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+
+
 
 
 

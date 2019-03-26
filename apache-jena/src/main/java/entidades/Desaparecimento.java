@@ -15,7 +15,7 @@ public class Desaparecimento extends EntidadeRDF {
 	private Local localDesaparecimento;
 	
 	@Override
-	public String rdfForm() {
+	public String rdfForm(String rdfName) throws IllegalArgumentException, IllegalAccessException {
 		
 		StringBuilder str = new StringBuilder();
 		
@@ -33,6 +33,13 @@ public class Desaparecimento extends EntidadeRDF {
 	
 	@Override
 	public EntidadeRDF fromQueryList(List<QuerySolution> qsList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+	@Override
+	public String namedIndividualForm(String nomeIndividuo) throws IllegalArgumentException, IllegalAccessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -67,4 +74,5 @@ public class Desaparecimento extends EntidadeRDF {
 	public void setLocalDesaparecimento(Local localDesaparecimento) {
 		this.localDesaparecimento = localDesaparecimento;
 	}
+
 }

@@ -17,7 +17,7 @@ public class Local extends EntidadeRDF {
 	private String longitude;
 	
 	@Override
-	public String rdfForm() {
+	public String rdfForm(String rdfName) throws IllegalArgumentException, IllegalAccessException {
 		
 		StringBuilder str = new StringBuilder();
 		
@@ -37,6 +37,12 @@ public class Local extends EntidadeRDF {
 	
 	@Override
 	public EntidadeRDF fromQueryList(List<QuerySolution> qsList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public String namedIndividualForm(String nomeIndividuo) throws IllegalArgumentException, IllegalAccessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
